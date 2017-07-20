@@ -2,7 +2,6 @@ package com.example.demo.repository;
 
 import java.io.IOException;
 
-//import com.example.demo.domain.Familys;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
@@ -11,12 +10,7 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.KeyValue;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
-import javax.annotation.Resources;
-
 
 @Repository
 public class HbaseRepository implements InitializingBean {
@@ -79,17 +73,11 @@ public class HbaseRepository implements InitializingBean {
         if (admin.tableExists(tableName)) {
             System.out.println("table Exists!");
             return "table Exists!";
-//            if (!admin.isTableDisabled(tableName)) {
-//                System.out.println("Disabling " + tableName);
-//                admin.disableTable(tableName);
-//            }
-//            System.out.println("Deleting " + tableName);
-//            admin.deleteTable(tableName);
-        } else {
-            admin.createTable(desc);
-            System.out.println("create table Success!");
-            return "Init Table Success!";
         }
+        admin.createTable(desc);
+        System.out.println("create table Success!");
+        return "Init Table Success!";
+
     }
 
     /**
